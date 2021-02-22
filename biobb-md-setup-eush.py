@@ -29,6 +29,11 @@ from biobb_analysis.gromacs.gmx_energy import GMXEnergy
 from biobb_analysis.gromacs.gmx_image import GMXImage
 from biobb_analysis.gromacs.gmx_trjconv_str import GMXTrjConvStr
 
+def prep_output_file(input_file_path, output_file_path):
+    wdir = PurePath(output_file_path).parent
+    if not os.path.isdir(wdir):
+        os.mkdir(wdir)
+    shutil.copy(input_file_path, output_file_path)
 
 def write_pdb_from_gro(output_pdb_path, input_gro_path):
     prop = {'selection': 'Protein'}
@@ -67,16 +72,13 @@ def run_wf(args):
         
         global_log.info("step1_pdb: Downloading {} from PDB".format(pdbCode))
         prop = {
-            'step': 'step1_pdb',
+            'path': PurePath(global_paths["step1_pdb"]["output_pdb_path"]).parent,
             'pdb_code': pdbCode
         }
         Pdb(**global_paths["step1_pdb"], properties=prop).launch()
     else:
         global_log.info("step1_pdb: Adding input PDB ({}) to working dir".format(args.input_pdb_path))
-        wdir = PurePath(global_paths["step1_pdb"]["output_pdb_path"]).parent
-        if not os.path.isdir(wdir):
-            os.mkdir(wdir)    
-        shutil.copy(args.input_pdb_path, global_paths["step1_pdb"]["output_pdb_path"])
+        prep_output_file(args.input_pdb_path, global_paths["step1_pdb"]["output_pdb_path"])
         pdbCode = os.path.splitext(args.input_pdb_path)[0]
 
     if args.mut_list:
@@ -87,10 +89,7 @@ def run_wf(args):
         }
         Mutate(**global_paths["step1_mutations"], properties=prop).launch()
     else:
-        wdir = PurePath(global_paths["step1_mutations"]["output_pdb_path"]).parent
-        if not os.path.isdir(wdir):
-            os.mkdir(wdir)    
-        shutil.copy(global_paths["step1_pdb"]["output_pdb_path"], global_paths["step1_mutations"]["output_pdb_path"])
+        prep_output_file(global_paths["step1_pdb"]["output_pdb_path"], global_paths["step1_mutations"]["output_pdb_path"])
     
     global_log.info("step2_fixsidechain: Modeling the missing heavy atoms in the structure side chains")
     FixSideChain(**global_paths["step2_fixsidechain"], properties=global_prop["step2_fixsidechain"]).launch()
