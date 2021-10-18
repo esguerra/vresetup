@@ -1,6 +1,0 @@
-python=3.7
-biobb_common
-biobb_io
-biobb_model
-biobb_md
-biobb_analysis

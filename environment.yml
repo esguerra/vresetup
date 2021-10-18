@@ -1,0 +1,10 @@
+name: vresetup
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.7
+  - biobb_analysis==3.6.0
+  - biobb_io==3.6.0
+  - biobb_model==3.6.0
+  - biobb_md==3.6.0

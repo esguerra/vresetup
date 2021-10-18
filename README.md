@@ -1,5 +1,14 @@
 # Biobb_MD_setup
 
+## Conda Installation and Launch
+
+```console
+git clone https://gitlab.bsc.es/inb/eucanshare/biobb_md_setup.git vresetup
+cd vresetup
+conda env create -f environment.yml python=3.7
+conda activate vresetup
+```
+
 Initial script for Basic MD Setup within euCanShare VRE
 
 ```
@@ -14,6 +23,6 @@ optional arguments:
   --op TO_DO            Extent of the pipeline to execute (fix, min, nvt, npt)
   --mut_list MUT_LIST   Mutations list as *|A:V45W[,...]
   --config CONFIG_PATH  Configuration file (YAML)
-
+```
 
 
