@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J mapk11
+#SBATCH -J gelpiwf
 #SBATCH --output=mapk11_%j.out
 #SBATCH --error=mapk11_%j.err
 #SBATCH --ntasks=5
@@ -10,10 +10,4 @@ module purge
 source /shared/work/mesguerra/miniconda3.8/bin/activate
 conda activate vresetup
 hostname
-python biobb-md-setup-eush.py -i 3GC8.pdb
-
-
-
-
-
-
+python biobb_md_setup_eush.py -i input/3GC8.pdb -o output --op free --config biobb_md_setup_eush.yaml

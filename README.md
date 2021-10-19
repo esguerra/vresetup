@@ -25,4 +25,8 @@ optional arguments:
   --config CONFIG_PATH  Configuration file (YAML)
 ```
 
+Note: You should provide all arguments available for the script to run, say:
 
+```
+python biobb_md_setup_eush.py -i input/3GC8.pdb -o output --op free --config biobb_md_setup_eush.yaml
+```
