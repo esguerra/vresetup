@@ -10,4 +10,10 @@ module purge
 source /shared/work/mesguerra/miniconda3.8/bin/activate
 conda activate vresetup
 hostname
-python biobb_md_setup_eush.py -i input/3GC8.pdb -o output --op free --config biobb_md_setup_eush.yaml
+# Note: Mutation of Arginine 275 to Histidine taken from the eu-can-share vre.
+#python biobb_md_setup_eush.py -i input/3GC8.pdb -o main     --op free --config biobb_md_setup_eush.yaml
+
+python biobb_md_setup_eush.py -i input/3GC8.pdb -o variant1 --op free --config biobb_md_setup_eush.yaml \
+       --mut_list A:R275H
+
+

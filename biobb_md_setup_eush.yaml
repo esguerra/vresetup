@@ -1,6 +1,6 @@
 # Example of a YAML configuration file for a BioExcel building blocks workflow
 
-working_dir_path: output          # Folder to write i/o files of the workflow steps
+working_dir_path: variant1        # Folder to write i/o files of the workflow steps
 can_write_console_log: False      # Verbose writing of log information
 restart: True                     # Skip steps already performed
 
@@ -65,7 +65,7 @@ step8_grompp_min:
   properties:
     simulation_type: minimization
     mdp:
-      nsteps: 5000
+      nsteps: 10000
       emtol: 500
 
 step9_mdrun_min:
@@ -91,7 +91,7 @@ step11_grompp_nvt:
   properties:
     simulation_type: nvt
     mdp:
-      nsteps: 5000
+      nsteps: 50000
       dt: 0.002
       Define: -DPOSRES
 
@@ -120,7 +120,8 @@ step14_grompp_npt:
   properties:
     simulation_type: npt
     mdp:
-      nsteps: 5000
+      nsteps: 50000
+#     ref-t: 310
 
 step15_mdrun_npt:
   paths:
@@ -147,7 +148,7 @@ step17_grompp_md:
   properties:
     simulation_type: free
     mdp:
-      nsteps: 50000
+      nsteps : 2500000
 
 step18_mdrun_md:
   paths:
