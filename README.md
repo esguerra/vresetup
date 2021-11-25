@@ -3,7 +3,7 @@
 ## Conda Installation and Launch
 
 ```console
-git clone https://gitlab.bsc.es/inb/eucanshare/biobb_md_setup.git vresetup
+git clone https://github.com/esguerra/vresetup.git vresetup
 cd vresetup
 conda env create -f environment.yml python=3.7
 conda activate vresetup
@@ -20,7 +20,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -i INPUT_PDB_PATH     Input pdb file or id (as pdb:id)
   -o OUTPUT_PDB_PATH    Output pdb file
-  --op TO_DO            Extent of the pipeline to execute (fix, min, nvt, npt)
+  --op TO_DO            Extent of the pipeline to execute (fix, min, nvt, npt, free)
   --mut_list MUT_LIST   Mutations list as *|A:V45W[,...]
   --config CONFIG_PATH  Configuration file (YAML)
 ```
@@ -28,5 +28,5 @@ optional arguments:
 Note: You should provide all arguments available for the script to run, say:
 
 ```
-python biobb_md_setup_eush.py -i input/3GC8.pdb -o output --op free --config biobb_md_setup_eush.yaml
+python biobb_md_setup_eush.py -i input/3GC8.pdb -o output --op free --config biobb_md_setup_eush.yaml --mut_list A:R275H
 ```
