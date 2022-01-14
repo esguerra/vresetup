@@ -29,7 +29,7 @@ step4_editconf:
     input_gro_path: dependency/step3_pdb2gmx/output_gro_path
     output_gro_path: editconf.gro
   properties:
-    box_type: cubic
+    box_type: octahedron
     distance_to_molecule: 1.0
 
 step5_solvate:
@@ -95,6 +95,7 @@ step11_grompp_nvt:
       dt: 0.002
       Define: -DPOSRES
       ref-t:  310 310
+      nstxout: 0
 
 step12_mdrun_nvt:
   paths:
@@ -123,6 +124,7 @@ step14_grompp_npt:
     mdp:
       nsteps: 50000
       ref-t:  310 310
+      nstxout: 0
 
 step15_mdrun_npt:
   paths:
@@ -149,8 +151,10 @@ step17_grompp_md:
   properties:
     simulation_type: free
     mdp:
-      nsteps : 2500000
+      nsteps : 50000000
       ref-t:  310 310
+      nstxout-compressed: 100000
+      nstxout: 0
 
 step18_mdrun_md:
   paths:
